@@ -1,0 +1,36 @@
+<div class="container">
+  <header class="jumbotron">
+    <h1>Users List</h1>
+  </header>
+
+
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="tabletocard">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>
+          <a [routerLink]="" (click)="loadOption(user)">
+            <p> {{user.id}} </p>
+          </a>
+        </td>
+        <td>
+          <p> {{user.username}} </p>
+        </td>
+        <td>
+          <p>{{user.email}}</p>
+        </td>
+        <td>
+          <p>{{user.role}}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

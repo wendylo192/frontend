@@ -1,0 +1,41 @@
+<div class="container">
+
+  <header class="jumbotron">
+    <h1 *ngIf="!isUserUpdate">Add User</h1>
+    <h1 *ngIf="isUserUpdate">Update User</h1>
+  </header>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <div class="form-group">
+      <label for="usernameReg">Username</label>
+      <input formControlName="username" id="usernameReg" [type]="text" />
+      <div class="alert-danger" *ngIf="submitted && username.invalid">
+        <div *ngIf="username.errors.required">Username is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="emailReg">Email</label>
+      <input formControlName="email" id="emailReg" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="passwordReg">Password</label>
+      <input formControlName="password" id="passwordReg" type="password" />
+    </div>
+    <div class="form-group">
+      <label for="roleReg">Role</label>
+      <select id="roleReg" formControlName="role" [name]="role">
+        <option *ngFor="let role of roles" [value]="role">
+          {{role}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Save</button>
+    </div>
+  </form>
+
+  {{form.value | json}}
+</div>

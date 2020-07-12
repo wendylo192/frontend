@@ -1,0 +1,46 @@
+<div class="container">
+  <header class="jumbotron">
+    <h1>TV Shows List</h1>
+  </header>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <div class="form-group">
+      <label for="usernameReg">Search</label>
+      <input formControlName="searchKeyword" id="searchKeyword" [type]="text" />
+      {{searchKeyword}}
+    </div>
+  </form>
+
+  <div *ngIf="isSearching">
+    {{shows | json}}
+  </div>
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="tabletocard">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Language</th>
+        <th>Genre</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let tvshow of shows">
+        <td>
+          <a [routerLink]="" (click)="loadOption(tvshow)">
+            <p> {{tvshow.name}} </p>
+            <div *ngIf="tvshow.image">
+              <img [src]="tvshow.image.medium" [alt]="tvshow.name">
+            </div>
+          </a>
+        </td>
+        <td>
+          <p> {{tvshow.language}} </p>
+        </td>
+        <td>
+          <p *ngFor="let genre of tvshow.genres"> {{genre}} </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
